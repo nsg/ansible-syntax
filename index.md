@@ -284,7 +284,7 @@ In the end, find a style that works for you and who you work with. If you joins 
       debug:
         msg: "No {% raw %}{{ item }}{% endraw %}"
       with_items:
-        - 1
-        - 2
+        - "1"
+        - "{% raw %}{{ number }}{% endraw %}"
 
 ```

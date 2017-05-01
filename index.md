@@ -244,29 +244,13 @@ Personally I have nothing against keeping foo and bar without quotes. It's a sty
     - "bar"
 ```
 
-In the end, find a style that works for you and who you work with. If you joins a existing project look around in the files and get a feel about the style in use and try to mimic it.
+The disadvantage to ignore the quotes are that if you start out with a simple list with no quotes and you later on decides to use variables you need to add quotes to every element to stay consistent. That creates a larger diff in your code commit and that is never a good thing. Combine that with the fact that Jinja convertes `yes` to bool(True) and that can cause bugs if you expected a literal yes.
+
+So I will end up recommending to use quotes most of the time, and only omit them if you like to use the Jinja conversions.
 
 ### Recommendation
 
 ```yaml
-- name: "This play do stuff"
-  hosts: all
-  roles:
-    - foo
-    - bar
-
-  tasks:
-    - name: Task 1
-      debug:
-        msg: "foo"
-
-    - name: Task 2
-      debug:
-        msg: "No {% raw %}{{ item }}{% endraw %}"
-      with_items:
-        - one
-        - two
-
 - name: "This do some more things"
   hosts: "web:db"
   roles:
@@ -286,5 +270,14 @@ In the end, find a style that works for you and who you work with. If you joins 
       with_items:
         - "one"
         - "{% raw %}{{ number }}{% endraw %}"
+        - yes
+        - 1.36768
 
 ```
+
+* I always try to quote name
+* host must be quotes in this case, but try to be consistent!
+* I did not quote the role names and tag name because it's unlikely that I need to use variables or that I will call a role "yes" or something. Then of course I break my rules a little here for the aesthetics.
+* I like to keep a newline after a list element for readability.
+
+In the end, find a style that works for you and who you work with. If you joins a existing project look around in the files and get a feel about the style in use and try to mimic it.

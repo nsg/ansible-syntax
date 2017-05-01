@@ -133,7 +133,7 @@ The most simple playbook I can think about, that actually do something, is this:
 - host: all
   tasks:
     - debug:
-        msg: "{{ inventory_hostname }}"
+        msg: "{% raw %}{{ inventory_hostname }}{% endraw %}"
 ```
 
 This is fine playbook, valid YAML and Jinja2. In the old days of Ansible we could write things like below, and it was even promoted in the documentation (and to some extent there still is a lot of this old code out there):

@@ -243,3 +243,5 @@ Personally I have nothing against keeping foo and bar without quotes. It's a sty
     - foo
     - "bar"
 ```
+
+In the end, find a style that works for you and who you work with. If you joins a existing project look around in the files and get a feel about the style in use and try to mimic it.

@@ -10,6 +10,10 @@ If possible I recommend a formatter or linter that will check/enforce the coding
 
 I have written Ansible code for a few years and there are an informal default out there with a few variations I will walk through them and try to make a educated decision, and a recommendation.
 
+## Index
+
+* [Indentation](#Indentation)
+
 ## Indentation
 
 This is a classic discussion when it comes to software projects, there are plenty of strong options like tabs, spaces or even a mix of both. How wide is a tab, 8 spaces, 4? How many spaces to use? 2, 8, 4 or even 3? There are plenty of options out there.

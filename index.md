@@ -232,7 +232,7 @@ People like to omit the quotes mostly to write nice code like this:
     - bar
 ```
 
-Personally I have nothing against keeping foo and bar without quotes. It's a style that I personally like and it's common in it's usage. But place try to be consistent, do not mix and match it like this:
+Personally I have nothing against keeping foo and bar without quotes. It's a style that I personally like and it's common in it's usage. But please try to be consistent, do not mix and match it like this:
 
 ```yaml
 - name: Do stuff

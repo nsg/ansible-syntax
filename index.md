@@ -276,9 +276,4 @@ So I will end I recommend to use quotes most of the time, and only omit them if 
 
 ```
 
-* I always try to quote name
-* host must be quotes in this case, but try to be consistent!
-* I did not quote the role names and tag name because it's unlikely that I need to use variables or that I will call a role "yes" or something. Then of course I break my rules a little here for the aesthetics.
-* I like to keep a newline after a list element for readability.
-
 In the end, find a style that works for you and who you work with. If you joins a existing project look around in the files and get a feel about the style in use and try to mimic it.

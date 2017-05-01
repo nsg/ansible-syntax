@@ -245,3 +245,46 @@ Personally I have nothing against keeping foo and bar without quotes. It's a sty
 ```
 
 In the end, find a style that works for you and who you work with. If you joins a existing project look around in the files and get a feel about the style in use and try to mimic it.
+
+### Recommendation
+
+```yaml
+- name: "This play do stuff"
+  hosts: all
+  roles:
+    - foo
+    - bar
+
+  tasks:
+    - name: Task 1
+      debug:
+        msg: "foo"
+
+    - name: Task 2
+      debug:
+        msg: "No {% raw %}{{ item }}{% endraw %}"
+      with_items:
+        - 1
+        - 2
+
+- name: "This do some more things"
+  hosts: "web:db"
+  roles:
+    - role: foo
+      tags:
+        - foo
+    - role: bar
+
+  tasks:
+    - name: "Task: 1"
+      debug:
+        msg: "foo"
+
+    - name: "Task: 2"
+      debug:
+        msg: "No {% raw %}{{ item }}{% endraw %}"
+      with_items:
+        - 1
+        - 2
+
+```

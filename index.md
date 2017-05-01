@@ -130,7 +130,7 @@ An Ansible run is a sequence of one or more playbooks so they are one of the mos
 The most simple playbook I can think about, that actually do something, is this:
 
 ```yaml
-- host: all
+- hosts: all
   tasks:
     - debug:
         msg: "{% raw %}{{ inventory_hostname }}{% endraw %}"
@@ -139,7 +139,7 @@ The most simple playbook I can think about, that actually do something, is this:
 This is fine playbook, valid YAML and Jinja2. In the old days of Ansible we could write things like below, and it was even promoted in the documentation (and to some extent there still is a lot of this old code out there):
 
 ```yaml
-- host: all
+- hosts: all
   tasks:
     - debug: msg=inventory_hostname
 ```
@@ -159,7 +159,7 @@ This means that if you inject some Jinja logic in to the playbook it still needs
 **Valid**
 
 ```yaml
-- host: all
+- hosts: all
   tasks:
     - debug:
         msg: "{% raw %}{% if a == 2 %}foo{% else %}bar{% endif %}{% endraw %}"
@@ -168,7 +168,7 @@ This means that if you inject some Jinja logic in to the playbook it still needs
 **Invalid**
 
 ```yaml
-- host: all
+- hosts: all
   tasks:
     - debug:
 {% raw %}{% if a == 2 %}
@@ -185,7 +185,7 @@ Ansibles YAML is a simple language that sometimes feels limiting but please do *
 From the example above, do something like this:
 
 ```yaml
-- host: all
+- hosts: all
   tasks:
     - debug:
         msg: "foo"
@@ -199,7 +199,7 @@ From the example above, do something like this:
 ... or even better, place a variable in host_vars, group_vars, inventory or wherever and just do this:
 
 ```yaml
-- host: all
+- hosts: all
   tasks:
     - debug:
         msg: "{% raw %}{{ my_var }}{% endraw %}"
@@ -209,7 +209,7 @@ Give it some time to structure your playbook in a readable way. If it's large us
 
 ```yaml
 - name: "A example that outputs a debug message"
-  host: all
+  hosts: all
   tasks:
     - name: "Print the debug message"
       debug:

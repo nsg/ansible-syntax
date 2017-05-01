@@ -1,8 +1,8 @@
 # Ansible Syntax
 
-If you are the lone coder of a project coding style do not matter, as long you are consistent. Try not to mix coding styles because it makes the code harder to read and understand.
+If you are the lone coder of a project, coding style do not matter as long you are consistent. Try not to mix coding styles because it makes the code harder to read and understand.
 
-Things will be more complicated when there are more than one person working on a project and I think it's important to decide of a coding style. It's possible that you both have strong opinions and if that's the case try to compromise, or even better try to pick the most common standard for the language or software you are working on, it will make life easier when you add people in the future.
+Things will be more complex when there are more than one person working on a project and I think it's important to decide of a coding style. It's possible that you both have strong opinions and if that's the case try to compromise, or even better try to pick the most common standard for the language or software you are working on, it will make life easier when you add people in the future.
 
 If possible I recommend a formatter or linter that will check/enforce the coding style. This will make your life a lot easier to keep and enforce "the rules".
 
@@ -24,7 +24,7 @@ With for *me* translates as:
 
 > You are free to choose any amount of indentation, they must be spaces and the purpose to keep it flexible is for readability.
 
-So YAML do not enforce anything really as long at the block is indentation with one or more space (0 or more for lists). But readability is a thing so keep that in mind.
+So YAML do not enforce anything really as long at the block is indented with one or more space (0 or more for lists). But readability is a thing so keep that in mind.
 
 [yaml.org](http://yaml.org/) is written in YAML to showcase how readable it is and they have used a two space indentation:
 
@@ -53,7 +53,7 @@ Maybe that's to keep it looking nice and aligned with the other list? At least i
 
 ### Ansible
 
-Ansible them self do not recommend any specific indentation but by looking at examples at the [Best Practices](http://docs.ansible.com/ansible/playbooks_best_practices.html) page we see this:
+Ansible do not recommend any specific indentation but by looking at examples at the [Best Practices](http://docs.ansible.com/ansible/playbooks_best_practices.html) page we see this:
 
 ```yaml
 ---
@@ -68,9 +68,9 @@ This matches the YAML syntax discussed above. They also provides a [examples rep
 
 By the look of it *most* code is indented 2 steps, lists are either indented 0 or 2 steps just like on the YAML homepage. The two step indentation seems to be a little more popular.
 
-*Personally* I prefer the 2 step indentation because I think it's more clear but I have people that have told me that they like the zero indentation because it's more compact and I do understand that.
+*Personally I prefer the 2 step indentation because I think it's more clear but I have people that have told me that they like the zero indentation because it's more compact and I do understand that.*
 
-Of course there are also a few odd ones there, like a list with a one step indentation but I feels like it's more likely to be a typo than a style.
+Of course there are also a few odd ones, like a list with a one step indentation but I feels like it's more likely to be a typo than a style choice.
 
 ### The community
 

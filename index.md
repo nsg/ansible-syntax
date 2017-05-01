@@ -162,7 +162,7 @@ This means that if you inject some Jinja logic in to the playbook it still needs
 - host: all
   tasks:
     - debug:
-        msg: "{% if a == 2 %}foo{% else %}bar{% endif %}"
+        msg: "{% raw %}{% if a == 2 %}foo{% else %}bar{% endif %}{% endraw %}"
 ```
 
 **Invalid**
@@ -171,11 +171,11 @@ This means that if you inject some Jinja logic in to the playbook it still needs
 - host: all
   tasks:
     - debug:
-{% if a == 2 %}
+{% raw %}{% if a == 2 %}
         msg: "foo"
 {% else %}
         msg: "bar"
-{% endif %}
+{% endif %}{% endraw %}
 ```
 
 ### Readable
@@ -190,7 +190,7 @@ Give it some time to structure your playbook in a readable way. If it's large us
   tasks:
     - name: "Print the debug message"
       debug:
-        msg: "{{ inventory_hostname }}"
+        msg: "{% raw %}{{ inventory_hostname }}{% raw %}"
 ```
 
 Notice that I have defined a name for the entire play, and the task. This makes it easier to understand the playbook without the need for a comment. The output from the plays execution is of course also easier to understand.
@@ -202,8 +202,8 @@ People like to omit the quotes mostly to write nice code like this:
 ```yaml
 - name: Do stuff
   template:
-    src: "{{ item }}.j2"
-    dest: "/path/{{ item }}"
+    src: "{% raw %}{{ item }}{% endraw %}.j2"
+    dest: "/path/{% raw %}{{ item }}{% endraw %}"
   with_items:
     - foo
     - bar
@@ -214,8 +214,8 @@ Personally I have nothing against keeping foo and bar without quotes. It's a sty
 ```yaml
 - name: Do stuff
   template:
-    src: "{{ item }}.j2"
-    dest: "/path/{{ item }}"
+    src: "{% raw %}{{ item }}{% endraw %}.j2"
+    dest: "/path/{% raw %}{{ item }}{% endraw %}"
   with_items:
     - foo
     - "bar"

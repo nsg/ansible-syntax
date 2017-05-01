@@ -182,6 +182,29 @@ This means that if you inject some Jinja logic in to the playbook it still needs
 
 Ansibles YAML is a simple language that sometimes feels limiting but please do **not** try to write complex inline programs with Jinja, just because you can do that do not mean that it was the right thing to do. In many case you can solve it in a more clever "Ansible way" anyway.
 
+From the example above, do something like this:
+
+```yaml
+- host: all
+  tasks:
+    - debug:
+        msg: "foo"
+      when: "{% raw %}{{ a == 2 }}{% endraw %}"
+
+    - debug:
+        msg: "bar"
+      when: "{% raw %}{{ a != 2 }}{% endraw %}"
+```
+
+... or even better, place a variable in host_vars, group_vars, inventory or wherever and just do this:
+
+```yaml
+- host: all
+  tasks:
+    - debug:
+        msg: "{% raw %}{{ my_var }}{% endraw %}"
+```
+
 Give it some time to structure your playbook in a readable way. If it's large use include to split it in to separate files. Comments are a nice thing and always use name.
 
 ```yaml

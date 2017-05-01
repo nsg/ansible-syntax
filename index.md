@@ -13,6 +13,7 @@ I have written Ansible code for a few years and there are an informal default ou
 ## Index
 
 * [Indentation](#indentation)
+* [A play](#a-play)
 
 ## Indentation
 
@@ -118,5 +119,104 @@ foo:
   baz:
     - qux
     - quux
+```
 
+## A play
+
+An Ansible run is a sequence of one or more playbooks so they are one of the most basic concepts of Ansible. So let's discuss some formatting of a playbook.
+
+### Basic
+
+The most simple playbook I can think about, that actually do something, is this:
+
+```yaml
+- host: all
+  tasks:
+    - debug:
+        msg: "{{ inventory_hostname }}"
+```
+
+This is fine playbook, valid YAML and Jinja2. In the old days of Ansible we could write things like below, and it was even promoted in the documentation (and to some extent there still is a lot of this old code out there):
+
+```yaml
+- host: all
+  tasks:
+    - debug: msg=inventory_hostname
+```
+
+It's nice and compact but it need a lot of parsing done by Ansible outside of the YAML and Jinja2 parsers so this format is deprecated. The key=value syntax still works but bare variables will complain in modern Ansible.
+
+### Parsing
+
+I have not read any formal specification or the code but from observation the file is parsed like this:
+
+1. The playbook is parsed with the YAML parser
+2. The Jinja2 parser is executed on all supported strings in the parsed data structure.
+3. Possible extra things like legacy key=value parsing and so on...
+
+This means that if you inject some Jinja logic in to the playbook it still needs to be valid YAML.
+
+**Valid**
+
+```yaml
+- host: all
+  tasks:
+    - debug:
+        msg: "{% if a == 2 %}foo{% else %}bar{% endif %}"
+```
+
+**Invalid**
+
+```yaml
+- host: all
+  tasks:
+    - debug:
+{% if a == 2 %}
+        msg: "foo"
+{% else %}
+        msg: "bar"
+{% endif %}
+```
+
+### Readable
+
+Ansibles YAML is a simple language that sometimes feels limiting but please do **not** try to write complex inline programs with Jinja, just because you can do that do not mean that it was the right thing to do. In many case you can solve it in a more clever "Ansible way" anyway.
+
+Give it some time to structure your playbook in a readable way. If it's large use include to split it in to separate files. Comments are a nice thing and always use name.
+
+```yaml
+- name: "A example that outputs a debug message"
+  host: all
+  tasks:
+    - name: "Print the debug message"
+      debug:
+        msg: "{{ inventory_hostname }}"
+```
+
+Notice that I have defined a name for the entire play, and the task. This makes it easier to understand the playbook without the need for a comment. The output from the plays execution is of course also easier to understand.
+
+If you know a little about YAML you know that `foo: bar` will be parsed as `str(bar)` while `foo: 1.2` will result in a `float(1.2)`. If you really like 1.2 to be a string the right thing to do is to use quotes. Y, N, No, False, false and so on will be parsed as boolean and that `foo: bar:baz` will be invalid syntax (needs to be quoted).
+
+People like to omit the quotes mostly to write nice code like this:
+
+```yaml
+- name: Do stuff
+  template:
+    src: "{{ item }}.j2"
+    dest: "/path/{{ item }}"
+  with_items:
+    - foo
+    - bar
+```
+
+Personally I have nothing against keeping foo and bar without quotes. It's a style that I personally like and it's common in it's usage. But place try to be consistent, do not mix and match it like this:
+
+```yaml
+- name: Do stuff
+  template:
+    src: "{{ item }}.j2"
+    dest: "/path/{{ item }}"
+  with_items:
+    - foo
+    - "bar"
 ```

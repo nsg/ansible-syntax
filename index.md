@@ -246,7 +246,7 @@ Personally I have nothing against keeping foo and bar without quotes. It's a sty
 
 The disadvantage to ignore the quotes are that if you start out with a simple list with no quotes and you later on decides to use variables you need to add quotes to every element to stay consistent. That creates a larger diff in your code commit and that is never a good thing. Combine that with the fact that Jinja convertes `yes` to bool(True) and that can cause bugs if you expected a literal yes.
 
-So I will end up recommending to use quotes most of the time, and only omit them if you like to use the Jinja conversions.
+So I will end I recommend to use quotes most of the time, and only omit them if you like to use the Jinja conversions, or possible for the aesthetics.
 
 ### Recommendation
 
@@ -257,6 +257,7 @@ So I will end up recommending to use quotes most of the time, and only omit them
     - role: foo
       tags:
         - foo
+
     - role: bar
 
   tasks:

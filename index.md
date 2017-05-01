@@ -12,7 +12,7 @@ I have written Ansible code for a few years and there are an informal default ou
 
 ## Index
 
-* [Indentation](#Indentation)
+* [Indentation](#indentation)
 
 ## Indentation
 

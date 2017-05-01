@@ -189,11 +189,11 @@ From the example above, do something like this:
   tasks:
     - debug:
         msg: "foo"
-      when: "{% raw %}{{ a == 2 }}{% endraw %}"
+      when: a == 2
 
     - debug:
         msg: "bar"
-      when: "{% raw %}{{ a != 2 }}{% endraw %}"
+      when: a != 2
 ```
 
 ... or even better, place a variable in host_vars, group_vars, inventory or wherever and just do this:

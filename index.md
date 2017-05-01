@@ -213,7 +213,7 @@ Give it some time to structure your playbook in a readable way. If it's large us
   tasks:
     - name: "Print the debug message"
       debug:
-        msg: "{% raw %}{{ inventory_hostname }}{% raw %}"
+        msg: "{% raw %}{{ inventory_hostname }}{% endraw %}"
 ```
 
 Notice that I have defined a name for the entire play, and the task. This makes it easier to understand the playbook without the need for a comment. The output from the plays execution is of course also easier to understand.

@@ -25,7 +25,7 @@ From the YAML spec [4.2.2. Indentation Spaces](http://yaml.org/spec/current.html
 
 > /../ where indentation is defined as a line break character (or the start of the stream) followed by zero or more space characters. Note that indentation must not contain any tab characters. The amount of indentation is a presentation detail used exclusively to delineate structure and is otherwise ignored. /../
 
-With for *me* translates as:
+For *me* that translates as:
 
 > You are free to choose any amount of indentation, they must be spaces and the purpose to keep it flexible is for readability.
 
@@ -73,7 +73,7 @@ This matches the YAML syntax discussed above. They also provides a [examples rep
 
 By the look of it *most* code is indented 2 steps, lists are either indented 0 or 2 steps just like on the YAML homepage. The two step indentation seems to be a little more popular.
 
-*Personally I prefer the 2 step indentation because I think it's more clear but I have people that have told me that they like the zero indentation because it's more compact and I do understand that.*
+*Personally I prefer the 2 step indentation because I think it's more clear but I have people that have told me that they like the zero indentation because it's more compact.*
 
 Of course there are also a few odd ones, like a list with a one step indentation but I feels like it's more likely to be a typo than a style choice.
 
@@ -109,17 +109,23 @@ The most common indentation I have found is a two white space indentation. There
 
 ```yaml
 
-foo:
-  - bar
-  - baz
-
-foo:
-  bar:
+- name: My playbook
+  hosts:
+    - bar
     - baz
-  baz:
-    - qux
-    - quux
+
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+
+    - name: Start nginx
+      service:
+        name: nginx
+        state: started
 ```
+
+*Note: The extra space is recommended for clarity to separate different units of logic.*
 
 ## A play
 
@@ -218,7 +224,7 @@ Give it some time to structure your playbook in a readable way. If it's large us
 
 Notice that I have defined a name for the entire play, and the task. This makes it easier to understand the playbook without the need for a comment. The output from the plays execution is of course also easier to understand.
 
-If you know a little about YAML you know that `foo: bar` will be parsed as `str(bar)` while `foo: 1.2` will result in a `float(1.2)`. If you really like 1.2 to be a string the right thing to do is to use quotes. Y, N, No, False, false and so on will be parsed as boolean and that `foo: bar:baz` will be invalid syntax (needs to be quoted).
+If you know a little about YAML you know that `foo: bar` will be parsed as `str(bar)` while `foo: 1.2` will result in a `float(1.2)`. If you really like 1.2 to be a string the right thing to do is to use quotes. Y, N, No, False, false and so on will be parsed as boolean value.
 
 People like to omit the quotes mostly to write nice code like this:
 
